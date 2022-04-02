@@ -139,7 +139,7 @@ namespace Analyser
             Writer.WriteLine(string.Format(CSVPattern,
                 "Track Displacement X", "Track Displacement Y", "Track Displacement Length", "Track Duration",
                 "Track Length", "Track Speed Max", "Track Speed Mean", "Track Speed Min",
-                "Track Speed StdDev", "Track Speed Variation", "Track Straightness", "ID", "Experiment",
+                "Track Speed StdDev", "Track Speed Variation", "Track Straightness", "ID", "Data Folder",
                 "Projnummer", "Datum", "Kanal", "Startbild", "Lockstoff", "Gelafundinkonzentration", "Verduennung", 
                 "Startort der nG", "Serum", "Versuchsnummer", "LA", "LA Konz. [mmol/L]", "verwendbar"
                 ));

@@ -2,7 +2,7 @@
 @set IMARIS_PATH=%APPDATA%\ImarisEvaluation
 @set ADDIN_PATH=%APPDATA%\Microsoft\AddIns
 
-@mkdir %IMARIS_PATH% > nul
+@if not exist "%IMARIS_PATH%\" mkdir "%IMARIS_PATH%" 
 
 @copy /y ImarisEvaluation.xlam %ADDIN_PATH% > nul
 @copy /y ImarisEvaluation.exe %IMARIS_PATH% > nul
