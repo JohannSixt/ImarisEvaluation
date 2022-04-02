@@ -1,0 +1,5 @@
+D:\ProjectsNet\Sara-Auswertungen\Auswert\bin\Debug\Auswert.exe.config
+D:\ProjectsNet\Sara-Auswertungen\Auswert\bin\Debug\Auswert.exe
+D:\ProjectsNet\Sara-Auswertungen\Auswert\bin\Debug\Auswert.pdb
+D:\ProjectsNet\Sara-Auswertungen\Auswert\obj\Debug\Auswert.exe
+D:\ProjectsNet\Sara-Auswertungen\Auswert\obj\Debug\Auswert.pdb
