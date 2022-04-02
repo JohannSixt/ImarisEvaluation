@@ -1,5 +1,0 @@
-D:\ProjectsNet\Sara-Auswertungen\Auswert\bin\Release\Auswert.exe.config
-D:\ProjectsNet\Sara-Auswertungen\Auswert\bin\Release\Auswert.exe
-D:\ProjectsNet\Sara-Auswertungen\Auswert\bin\Release\Auswert.pdb
-D:\ProjectsNet\Sara-Auswertungen\Auswert\obj\Release\Auswert.exe
-D:\ProjectsNet\Sara-Auswertungen\Auswert\obj\Release\Auswert.pdb

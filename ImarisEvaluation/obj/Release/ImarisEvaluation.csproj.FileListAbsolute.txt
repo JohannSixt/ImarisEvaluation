@@ -1,9 +1,0 @@
-D:\ProjectsNet\Sara-Auswertungen\ImarisEvaluation\bin\Release\ImarisEvaluation.exe.config
-D:\ProjectsNet\Sara-Auswertungen\ImarisEvaluation\bin\Release\ImarisEvaluation.exe
-D:\ProjectsNet\Sara-Auswertungen\ImarisEvaluation\bin\Release\ImarisEvaluation.pdb
-D:\ProjectsNet\Sara-Auswertungen\ImarisEvaluation\bin\Release\Microsoft.CSharp.dll
-D:\ProjectsNet\Sara-Auswertungen\ImarisEvaluation\bin\Release\System.dll
-D:\ProjectsNet\Sara-Auswertungen\ImarisEvaluation\bin\Release\System.Xml.Linq.dll
-D:\ProjectsNet\Sara-Auswertungen\ImarisEvaluation\obj\Release\ImarisEvaluation.exe
-D:\ProjectsNet\Sara-Auswertungen\ImarisEvaluation\obj\Release\ImarisEvaluation.pdb
-D:\ProjectsNet\Sara-Auswertungen\ImarisEvaluation\obj\Release\ImarisEvaluation.csprojResolveAssemblyReference.cache

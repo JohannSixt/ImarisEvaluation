@@ -1,8 +1,0 @@
-D:\ProjectsNet\Sara-Auswertungen\Auswert\bin\Release\Microsoft.CSharp.dll
-D:\ProjectsNet\Sara-Auswertungen\Auswert\bin\Release\System.dll
-D:\ProjectsNet\Sara-Auswertungen\Auswert\bin\Release\System.Xml.Linq.dll
-D:\ProjectsNet\Sara-Auswertungen\Auswert\bin\Release\Analyser.exe.config
-D:\ProjectsNet\Sara-Auswertungen\Auswert\bin\Release\Analyser.exe
-D:\ProjectsNet\Sara-Auswertungen\Auswert\bin\Release\Analyser.pdb
-D:\ProjectsNet\Sara-Auswertungen\Auswert\obj\Release\Analyser.exe
-D:\ProjectsNet\Sara-Auswertungen\Auswert\obj\Release\Analyser.pdb
