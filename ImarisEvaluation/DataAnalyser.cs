@@ -20,103 +20,106 @@ namespace Analyser
 
                 foreach (string FileSpec in Files.FileList)
                 {
-                    FileInfo[] StatisticFiles = Directory.GetDirectories("*Migration_Statistics*")[0].GetFiles("*" + FileSpec + ".*");
-
-                    if (StatisticFiles.Length > 0)
+                    if (Directory.GetDirectories("*Migration_Statistics*").Count() > 0)
                     {
-                        StreamReader Reader = new StreamReader(StatisticFiles[0].Open(FileMode.Open, FileAccess.Read));
-                        Console.WriteLine("reading " + StatisticFiles[0].FullName);
-                        bool HeaderFound = false;
+                        FileInfo[] StatisticFiles = Directory.GetDirectories("*Migration_Statistics*")[0].GetFiles("*" + FileSpec + ".*");
 
-                        int IDIndex = -1;
-                        int IDComponentName = -1;
-
-                        while (!Reader.EndOfStream)
+                        if (StatisticFiles.Length > 0)
                         {
-                            string Line = Reader.ReadLine();
-                            List<string> Data = new List<string>(Line.Split(new char[] { ',' }));
+                            StreamReader Reader = new StreamReader(StatisticFiles[0].Open(FileMode.Open, FileAccess.Read));
+                            Console.WriteLine("reading " + StatisticFiles[0].FullName);
+                            bool HeaderFound = false;
 
-                            if (Data.Count > 1 && !HeaderFound)
+                            int IDIndex = -1;
+                            int IDComponentName = -1;
+
+                            while (!Reader.EndOfStream)
                             {
-                                HeaderFound = true;
-                                IDIndex = Data.IndexOf(Data.Where(x => x.ToLower().Equals("id")).First());
-                                IDComponentName = Data.IndexOf(Data.Where(x => x.ToLower().Equals("original component name")).First());
+                                string Line = Reader.ReadLine();
+                                List<string> Data = new List<string>(Line.Split(new char[] { ',' }));
+
+                                if (Data.Count > 1 && !HeaderFound)
+                                {
+                                    HeaderFound = true;
+                                    IDIndex = Data.IndexOf(Data.Where(x => x.ToLower().Equals("id")).First());
+                                    IDComponentName = Data.IndexOf(Data.Where(x => x.ToLower().Equals("original component name")).First());
+                                }
+                                else if (HeaderFound)
+                                {
+                                    string Index = string.Empty;
+
+                                    Index = Data[IDIndex];
+
+                                    if (FileSpec.Equals("Track_Displacement"))
+                                    {
+                                        Experiment.GetTrack(Index).DisplacementX = Data[0];
+                                        Experiment.GetTrack(Index).DisplacementY = Data[1];
+
+                                        string[] ComponentData = Data[IDComponentName].Split(new char[] { ' ' });
+                                        Experiment.GetTrack(Index).ProjNumber = ComponentData[0];
+                                        Experiment.GetTrack(Index).Date = ComponentData[1];
+                                        Experiment.GetTrack(Index).Channel = ComponentData[2];
+                                        Experiment.GetTrack(Index).StartImage = ComponentData[3];
+                                        Experiment.GetTrack(Index).Lockstoff = ComponentData[4];
+                                        Experiment.GetTrack(Index).Gelafundinkonzentration = ComponentData[5];
+                                        Experiment.GetTrack(Index).Verduennung = ComponentData[6];
+                                        Experiment.GetTrack(Index).StartOrt = ComponentData[7];
+                                        Experiment.GetTrack(Index).Serum = ComponentData[8];
+                                        Experiment.GetTrack(Index).Versuchsnummer = ComponentData[9];
+                                        Experiment.GetTrack(Index).LA = ComponentData[10];
+                                        Experiment.GetTrack(Index).LAKonz = ComponentData[11];
+                                        Experiment.GetTrack(Index).Verwendbar = ComponentData[12];
+                                    }
+
+                                    else if (FileSpec.Equals("Track_Displacement_Length"))
+                                    {
+                                        Experiment.GetTrack(Index).DisplacementLength = Data[0];
+                                    }
+
+                                    else if (FileSpec.Equals("Track_Duration"))
+                                    {
+                                        Experiment.GetTrack(Index).Duration = Data[0];
+                                    }
+
+                                    else if (FileSpec.Equals("Track_Length"))
+                                    {
+                                        Experiment.GetTrack(Index).Length = Data[0];
+                                    }
+
+                                    else if (FileSpec.Equals("Track_Speed_Max"))
+                                    {
+                                        Experiment.GetTrack(Index).SpeedMax = Data[0];
+                                    }
+
+                                    else if (FileSpec.Equals("Track_Speed_Mean"))
+                                    {
+                                        Experiment.GetTrack(Index).SpeedMean = Data[0];
+                                    }
+
+                                    else if (FileSpec.Equals("Track_Speed_Min"))
+                                    {
+                                        Experiment.GetTrack(Index).SpeedMin = Data[0];
+                                    }
+
+                                    else if (FileSpec.Equals("Track_Speed_StdDev"))
+                                    {
+                                        Experiment.GetTrack(Index).SpeedStdDev = Data[0];
+                                    }
+
+                                    else if (FileSpec.Equals("Track_Speed_Variation"))
+                                    {
+                                        Experiment.GetTrack(Index).SpeedVariation = Data[0];
+                                    }
+
+                                    else if (FileSpec.Equals("Track_Straightness"))
+                                    {
+                                        Experiment.GetTrack(Index).Straighness = Data[0];
+                                    }
+                                }
                             }
-                            else if (HeaderFound)
-                            {
-                                string Index = string.Empty;
 
-                                Index = Data[IDIndex];
-
-                                if (FileSpec.Equals("Track_Displacement"))
-                                {
-                                    Experiment.GetTrack(Index).DisplacementX = Data[0];
-                                    Experiment.GetTrack(Index).DisplacementY = Data[1];
-
-                                    string[] ComponentData = Data[IDComponentName].Split(new char[] { ' ' });
-                                    Experiment.GetTrack(Index).ProjNumber = ComponentData[0];
-                                    Experiment.GetTrack(Index).Date = ComponentData[1];
-                                    Experiment.GetTrack(Index).Channel = ComponentData[2];
-                                    Experiment.GetTrack(Index).StartImage = ComponentData[3];
-                                    Experiment.GetTrack(Index).Lockstoff = ComponentData[4];
-                                    Experiment.GetTrack(Index).Gelafundinkonzentration = ComponentData[5];
-                                    Experiment.GetTrack(Index).Verduennung = ComponentData[6];
-                                    Experiment.GetTrack(Index).StartOrt = ComponentData[7];
-                                    Experiment.GetTrack(Index).Serum = ComponentData[8];
-                                    Experiment.GetTrack(Index).Versuchsnummer = ComponentData[9];
-                                    Experiment.GetTrack(Index).LA = ComponentData[10];
-                                    Experiment.GetTrack(Index).LAKonz = ComponentData[11];
-                                    Experiment.GetTrack(Index).Verwendbar = ComponentData[12];
-                                }
-
-                                else if (FileSpec.Equals("Track_Displacement_Length"))
-                                {
-                                    Experiment.GetTrack(Index).DisplacementLength = Data[0];
-                                }
-
-                                else if (FileSpec.Equals("Track_Duration"))
-                                {
-                                    Experiment.GetTrack(Index).Duration = Data[0];
-                                }
-
-                                else if (FileSpec.Equals("Track_Length"))
-                                {
-                                    Experiment.GetTrack(Index).Length = Data[0];
-                                }
-
-                                else if (FileSpec.Equals("Track_Speed_Max"))
-                                {
-                                    Experiment.GetTrack(Index).SpeedMax = Data[0];
-                                }
-
-                                else if (FileSpec.Equals("Track_Speed_Mean"))
-                                {
-                                    Experiment.GetTrack(Index).SpeedMean = Data[0];
-                                }
-
-                                else if (FileSpec.Equals("Track_Speed_Min"))
-                                {
-                                    Experiment.GetTrack(Index).SpeedMin = Data[0];
-                                }
-
-                                else if (FileSpec.Equals("Track_Speed_StdDev"))
-                                {
-                                    Experiment.GetTrack(Index).SpeedStdDev = Data[0];
-                                }
-
-                                else if (FileSpec.Equals("Track_Speed_Variation"))
-                                {
-                                    Experiment.GetTrack(Index).SpeedVariation = Data[0];
-                                }
-
-                                else if (FileSpec.Equals("Track_Straightness"))
-                                {
-                                    Experiment.GetTrack(Index).Straighness = Data[0];
-                                }
-                            }
+                            Reader.Close();
                         }
-
-                        Reader.Close();
                     }
                 }
             }
