@@ -27,7 +27,7 @@ namespace Analyser
                         if (StatisticFiles.Length > 0)
                         {
                             StreamReader Reader = new StreamReader(StatisticFiles[0].Open(FileMode.Open, FileAccess.Read));
-                            Console.WriteLine("reading " + StatisticFiles[0].FullName);
+                            Console.Write("reading " + StatisticFiles[0].FullName + " ... ");
                             bool HeaderFound = false;
 
                             int IDIndex = -1;
@@ -119,10 +119,13 @@ namespace Analyser
                             }
 
                             Reader.Close();
+                            Console.WriteLine("done");
                         }
                     }
                 }
             }
+
+            Console.Write("writing Result.csv ... ");
 
             if (!BaseFolder.EndsWith(@"\"))
                 BaseFolder += @"\";
@@ -143,7 +146,7 @@ namespace Analyser
                 "Track Displacement X", "Track Displacement Y", "Track Displacement Length", "Track Duration",
                 "Track Length", "Track Speed Max", "Track Speed Mean", "Track Speed Min",
                 "Track Speed StdDev", "Track Speed Variation", "Track Straightness", "ID", "Data Folder",
-                "Projnummer", "Datum", "Kanal", "Startbild", "Lockstoff", "Gelafundinkonzentration", "Verduennung", 
+                "Projnummer", "Datum", "Kanal", "Startbild", "Lockstoff", "Gelafundinkonzentration", "Verduennung",
                 "Startort der nG", "Serum", "Versuchsnummer", "LA", "LA Konz. [mmol/L]", "verwendbar"
                 ));
 
@@ -155,11 +158,12 @@ namespace Analyser
                        Track.Length, Track.SpeedMax, Track.SpeedMean, Track.SpeedMin,
                        Track.SpeedStdDev, Track.SpeedVariation, Track.Straighness, Track.Index, Experiment.Tag,
                        Track.ProjNumber, Track.Date, Track.Channel, Track.StartImage, Track.Lockstoff, Track.Gelafundinkonzentration, Track.Verduennung,
-                       Track.StartOrt, Track.Serum  , Track.Versuchsnummer, Track.LA, Track.LAKonz, Track.Verwendbar));
+                       Track.StartOrt, Track.Serum, Track.Versuchsnummer, Track.LA, Track.LAKonz, Track.Verwendbar));
                 }
             }
 
             Writer.Close();
+            Console.WriteLine("done");
 
 #if DEBUG
             Console.WriteLine("press any key ...");
