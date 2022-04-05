@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,10 @@ namespace ExcelAddIn1
         public DlgSettings()
         {
             InitializeComponent();
+
+            this.Left = (int)((Globals.ThisAddIn.Application.Left - Globals.ThisAddIn.Application.Width) / 2 - this.Width / 2);
+            Debug.Print(Globals.ThisAddIn.Application.Left + "/" + Globals.ThisAddIn.Application.Width);
+            
         }
 
         private void button1_Click(object sender, EventArgs e)

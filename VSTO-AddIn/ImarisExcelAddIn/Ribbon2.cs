@@ -1,22 +1,20 @@
-﻿using ExcelAddIn1;
-using Microsoft.Office.Interop.Excel;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Microsoft.Office.Tools.Ribbon;
-using System;
+using Microsoft.Office.Interop.Excel;
+using Analyser;
 using System.IO;
 using System.Windows.Forms;
 
-namespace Analyser
+namespace ExcelAddIn1
 {
-    public partial class Ribbon1
+    public partial class Ribbon2
     {
         private readonly string ResultCSV = "Result.csv";
 
-        private void Ribbon1_Load(object sender, RibbonUIEventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, RibbonControlEventArgs e)
+        private void btnMergeFiles_Click(object sender, RibbonControlEventArgs e)
         {
             Workbook ActiveWorkbook = Globals.ThisAddIn.Application.ActiveWorkbook;
 
@@ -48,7 +46,7 @@ namespace Analyser
             Globals.ThisAddIn.Application.StatusBar = "";
         }
 
-        private void btnConfiguration_Click(object sender, RibbonControlEventArgs e)
+        private void btnSettings_Click(object sender, RibbonControlEventArgs e)
         {
             DlgSettings Settings = new DlgSettings();
             Settings.ShowDialog();

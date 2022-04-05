@@ -1,24 +1,22 @@
-﻿using ExcelAddIn1;
-
-namespace Analyser
+﻿namespace ExcelAddIn1
 {
-    partial class Ribbon1 : Microsoft.Office.Tools.Ribbon.RibbonBase
+    partial class Ribbon2 : Microsoft.Office.Tools.Ribbon.RibbonBase
     {
         /// <summary>
-        /// Erforderliche Designervariable.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        public Ribbon1()
+        public Ribbon2()
             : base(Globals.Factory.GetRibbonFactory())
         {
             InitializeComponent();
         }
 
         /// <summary> 
-        /// Verwendete Ressourcen bereinigen.
+        /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">"true", wenn verwaltete Ressourcen gelöscht werden sollen, andernfalls "false".</param>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -28,36 +26,32 @@ namespace Analyser
             base.Dispose(disposing);
         }
 
-        #region Vom Komponenten-Designer generierter Code
+        #region Component Designer generated code
 
         /// <summary>
-        /// Erforderliche Methode für die Designerunterstützung.
-        /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ribbon1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ribbon2));
             this.tabImaris = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
             this.btnMergeFiles = this.Factory.CreateRibbonButton();
-            this.btnEditStraightness = this.Factory.CreateRibbonButton();
             this.btnSettings = this.Factory.CreateRibbonButton();
             this.tabImaris.SuspendLayout();
             this.group1.SuspendLayout();
-            this.SuspendLayout();
             // 
             // tabImaris
             // 
             this.tabImaris.Groups.Add(this.group1);
-            this.tabImaris.Label = "Imaris-Test";
+            this.tabImaris.Label = "Imaris Test";
             this.tabImaris.Name = "tabImaris";
             // 
             // group1
             // 
             this.group1.Items.Add(this.btnMergeFiles);
-            this.group1.Items.Add(this.btnEditStraightness);
             this.group1.Items.Add(this.btnSettings);
-            this.group1.Label = "VS-AddIn";
             this.group1.Name = "group1";
             // 
             // btnMergeFiles
@@ -67,36 +61,27 @@ namespace Analyser
             this.btnMergeFiles.Label = "Merge Files";
             this.btnMergeFiles.Name = "btnMergeFiles";
             this.btnMergeFiles.ShowImage = true;
-            this.btnMergeFiles.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
-            // 
-            // btnEditStraightness
-            // 
-            this.btnEditStraightness.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.btnEditStraightness.Image = ((System.Drawing.Image)(resources.GetObject("btnEditStraightness.Image")));
-            this.btnEditStraightness.Label = "Edit Straighness";
-            this.btnEditStraightness.Name = "btnEditStraightness";
-            this.btnEditStraightness.ShowImage = true;
+            this.btnMergeFiles.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnMergeFiles_Click);
             // 
             // btnSettings
             // 
             this.btnSettings.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.btnSettings.Enabled = false;
             this.btnSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnSettings.Image")));
             this.btnSettings.Label = "Settings";
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.ShowImage = true;
-            this.btnSettings.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnConfiguration_Click);
+            this.btnSettings.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnSettings_Click);
             // 
-            // Ribbon1
+            // Ribbon2
             // 
-            this.Name = "Ribbon1";
+            this.Name = "Ribbon2";
             this.RibbonType = "Microsoft.Excel.Workbook";
             this.Tabs.Add(this.tabImaris);
-            this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.Ribbon1_Load);
             this.tabImaris.ResumeLayout(false);
             this.tabImaris.PerformLayout();
             this.group1.ResumeLayout(false);
             this.group1.PerformLayout();
-            this.ResumeLayout(false);
 
         }
 
@@ -105,15 +90,14 @@ namespace Analyser
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tabImaris;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnMergeFiles;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnEditStraightness;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnSettings;
     }
 
     partial class ThisRibbonCollection
     {
-        internal Ribbon1 Ribbon1
+        internal Ribbon2 Ribbon2
         {
-            get { return this.GetRibbon<Ribbon1>(); }
+            get { return this.GetRibbon<Ribbon2>(); }
         }
     }
 }
