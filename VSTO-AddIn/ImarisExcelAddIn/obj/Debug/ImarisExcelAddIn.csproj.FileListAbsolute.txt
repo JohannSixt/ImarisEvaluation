@@ -1,0 +1,12 @@
+D:\Git-Projekte\ImarisEvaluation\VSTO-AddIn\ImarisExcelAddIn\bin\Debug\ExcelAddIn1.dll
+D:\Git-Projekte\ImarisEvaluation\VSTO-AddIn\ImarisExcelAddIn\bin\Debug\ExcelAddIn1.pdb
+D:\Git-Projekte\ImarisEvaluation\VSTO-AddIn\ImarisExcelAddIn\bin\Debug\ExcelAddIn1.dll.manifest
+D:\Git-Projekte\ImarisEvaluation\VSTO-AddIn\ImarisExcelAddIn\bin\Debug\ExcelAddIn1.vsto
+D:\Git-Projekte\ImarisEvaluation\VSTO-AddIn\ImarisExcelAddIn\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.dll
+D:\Git-Projekte\ImarisEvaluation\VSTO-AddIn\ImarisExcelAddIn\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.xml
+D:\Git-Projekte\ImarisEvaluation\VSTO-AddIn\ImarisExcelAddIn\obj\Debug\ExcelAddIn1.Properties.Resources.resources
+D:\Git-Projekte\ImarisEvaluation\VSTO-AddIn\ImarisExcelAddIn\obj\Debug\ExcelAddIn1.Ribbon1.resources
+D:\Git-Projekte\ImarisEvaluation\VSTO-AddIn\ImarisExcelAddIn\obj\Debug\ImarisExcelAddIn.csproj.GenerateResource.Cache
+D:\Git-Projekte\ImarisEvaluation\VSTO-AddIn\ImarisExcelAddIn\obj\Debug\ExcelAddIn1.dll
+D:\Git-Projekte\ImarisEvaluation\VSTO-AddIn\ImarisExcelAddIn\obj\Debug\ExcelAddIn1.pdb
+D:\Git-Projekte\ImarisEvaluation\VSTO-AddIn\ImarisExcelAddIn\obj\Debug\ExcelAddIn1.DlgSettings.resources

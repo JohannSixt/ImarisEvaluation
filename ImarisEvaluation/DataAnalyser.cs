@@ -8,6 +8,8 @@ namespace Analyser
 {
     public static class DataAnalyser
     {
+        public static event EventHandler<string> PrintData;
+
         public static void AnalyseData(string BaseFolder)
         {
             Dictionary<string, ExperimentS> Experiments = new Dictionary<string, ExperimentS>();
@@ -27,6 +29,7 @@ namespace Analyser
                         if (StatisticFiles.Length > 0)
                         {
                             StreamReader Reader = new StreamReader(StatisticFiles[0].Open(FileMode.Open, FileAccess.Read));
+
                             Console.Write("reading " + StatisticFiles[0].FullName + " ... ");
                             bool HeaderFound = false;
 
@@ -169,6 +172,12 @@ namespace Analyser
             Console.WriteLine("press any key ...");
             Console.ReadKey();
 #endif
+        }
+
+        static void OnPrintData(string Data)
+        {
+            if (PrintData != null)
+                PrintData(null, Data);
         }
     }
 }
