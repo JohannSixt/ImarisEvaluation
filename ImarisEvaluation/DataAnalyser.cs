@@ -4,33 +4,34 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 
-namespace Analyser
+namespace ImarisAddIn.Analyser
 {
     public static class DataAnalyser
     {
-        public static event EventHandler<string> PrintData;
+        public static event EventHandler<string> Print;
+        public static event EventHandler<string> PrintLine;
 
         public static void AnalyseData(string BaseFolder)
         {
             Dictionary<string, ExperimentS> Experiments = new Dictionary<string, ExperimentS>();
-            DirectoryInfo[] Directories = (new DirectoryInfo(BaseFolder)).GetDirectories("V*");
+            DirectoryInfo[] Directories = (new DirectoryInfo(BaseFolder)).GetDirectories(Settings.Instance.ExperimentsFolderPrefix + "*");
 
             foreach (DirectoryInfo Directory in Directories)
             {
                 ExperimentS Experiment = new ExperimentS(Directory.Name);
                 Experiments.Add(Directory.Name, Experiment);
 
-                foreach (string FileSpec in Files.FileList)
+                foreach (string FileSpec in Settings.Instance.FileList)
                 {
-                    if (Directory.GetDirectories("*Migration_Statistics*").Count() > 0)
+                    if (Directory.GetDirectories("*" + Settings.Instance.MigrationStatisticsFolderSpec + "*").Count() > 0)
                     {
-                        FileInfo[] StatisticFiles = Directory.GetDirectories("*Migration_Statistics*")[0].GetFiles("*" + FileSpec + ".*");
+                        FileInfo[] StatisticFiles = Directory.GetDirectories("*" + Settings.Instance.MigrationStatisticsFolderSpec + "*")[0].GetFiles("*" + FileSpec + ".*");
 
                         if (StatisticFiles.Length > 0)
                         {
                             StreamReader Reader = new StreamReader(StatisticFiles[0].Open(FileMode.Open, FileAccess.Read));
 
-                            Console.Write("reading " + StatisticFiles[0].FullName + " ... ");
+                            OnPrint("reading " + StatisticFiles[0].FullName + " ... ");
                             bool HeaderFound = false;
 
                             int IDIndex = -1;
@@ -44,8 +45,8 @@ namespace Analyser
                                 if (Data.Count > 1 && !HeaderFound)
                                 {
                                     HeaderFound = true;
-                                    IDIndex = Data.IndexOf(Data.Where(x => x.ToLower().Equals("id")).First());
-                                    IDComponentName = Data.IndexOf(Data.Where(x => x.ToLower().Equals("original component name")).First());
+                                    IDIndex = Data.IndexOf(Data.Where(x => x.Equals(Settings.Instance.IDColumn, StringComparison.InvariantCultureIgnoreCase)).First());
+                                    IDComponentName = Data.IndexOf(Data.Where(x => x.Equals(Settings.Instance.ComponentNameColumn, StringComparison.InvariantCultureIgnoreCase)).First());
                                 }
                                 else if (HeaderFound)
                                 {
@@ -122,13 +123,13 @@ namespace Analyser
                             }
 
                             Reader.Close();
-                            Console.WriteLine("done");
+                            OnPrintLine("done");
                         }
                     }
                 }
             }
 
-            Console.Write("writing Result.csv ... ");
+            OnPrint("writing Result.csv ... ");
 
             if (!BaseFolder.EndsWith(@"\"))
                 BaseFolder += @"\";
@@ -166,7 +167,9 @@ namespace Analyser
             }
 
             Writer.Close();
-            Console.WriteLine("done");
+            OnPrintLine("done");
+
+            Settings.Instance.Save();
 
 #if DEBUG
             Console.WriteLine("press any key ...");
@@ -174,10 +177,17 @@ namespace Analyser
 #endif
         }
 
-        static void OnPrintData(string Data)
+        static void OnPrint(string Data)
         {
-            if (PrintData != null)
-                PrintData(null, Data);
+            if (Print != null)
+                Print(null, Data);
         }
+
+        static void OnPrintLine(string Data)
+        {
+            if (PrintLine != null)
+                PrintLine(null, Data);
+        }
+
     }
 }

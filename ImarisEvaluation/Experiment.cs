@@ -1,7 +1,8 @@
-﻿using System;
+﻿using ImarisAddIn.Analyser;
+using System;
 using System.Collections.Generic;
 
-namespace Analyser
+namespace ImarisAddIn.Analyser
 {
     public class ExperimentS
     {

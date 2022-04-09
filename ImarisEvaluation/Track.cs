@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Analyser
+namespace ImarisAddIn.Analyser
 {
     public class TrackS
     {

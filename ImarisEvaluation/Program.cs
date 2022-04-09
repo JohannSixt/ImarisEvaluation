@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImarisAddIn.Analyser;
+using System;
 using System.IO;
 
 namespace Analyser
@@ -29,7 +30,20 @@ namespace Analyser
                 return;
             }
 
+            DataAnalyser.Print += DataAnalyser_Print;
+            DataAnalyser.PrintLine += DataAnalyser_PrintLine;
+
             DataAnalyser.AnalyseData(BaseFolder);
+        }
+
+        static void DataAnalyser_PrintLine(object sender, string e)
+        {
+            Console.WriteLine(e);
+        }
+
+        static void DataAnalyser_Print(object sender, string e)
+        {
+            Console.Write(e);
         }
     }
 }

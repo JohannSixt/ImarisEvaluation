@@ -1,4 +1,7 @@
-﻿namespace ExcelAddIn1
+﻿using ExcelAddIn1;
+using ImarisAddIn;
+
+namespace ImarisAddIn
 {
     partial class Ribbon2 : Microsoft.Office.Tools.Ribbon.RibbonBase
     {

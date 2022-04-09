@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using Microsoft.Office.Tools.Ribbon;
 using Microsoft.Office.Interop.Excel;
-using Analyser;
 using System.IO;
 using System.Windows.Forms;
+using ImarisAddIn.Analyser;
+using ExcelAddIn1;
 
-namespace ExcelAddIn1
+namespace ImarisAddIn
 {
     public partial class Ribbon2
     {

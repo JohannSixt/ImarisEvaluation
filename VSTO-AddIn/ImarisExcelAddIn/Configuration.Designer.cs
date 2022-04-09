@@ -1,4 +1,4 @@
-﻿namespace ExcelAddIn1
+﻿namespace ImarisAddIn
 {
     partial class DlgSettings
     {
