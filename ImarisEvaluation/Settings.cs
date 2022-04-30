@@ -7,6 +7,13 @@ using System.Xml.Serialization;
 namespace ImarisAddIn.Analyser
 {
     [Serializable]
+    public class DataFileSpec
+    {
+        public string FileSpec { get; set; }
+        public List<string> Data { get; set; }
+    }
+
+    [Serializable]
     public class Settings
     {
         private const string SettingsFile = @"\ImarisAddIn.settings.xml";
@@ -16,13 +23,11 @@ namespace ImarisAddIn.Analyser
         public string MigrationStatisticsFolderSpec;
         public string IDColumn;
         public string ComponentNameColumn;
+        public List<DataFileSpec> DataFileSpecs;
 
         private Settings()
         {
-            ExperimentsFolderPrefix = "V";
-            MigrationStatisticsFolderSpec = "Migration_Statistics";
-            IDColumn = "ID";
-            ComponentNameColumn = "Original Component Name";
+            DefaultSettings();
         }
 
         public static Settings Instance
@@ -35,26 +40,88 @@ namespace ImarisAddIn.Analyser
                 return mSettings;
             }
         }
-
-        public List<string> FileList
+        
+        private void DefaultSettings()
         {
-            get
-            {
-                return new List<string>()
+            ExperimentsFolderPrefix = "V";
+            MigrationStatisticsFolderSpec = "Migration_Statistics";
+            IDColumn = "ID";
+            ComponentNameColumn = "Original Component Name";
+
+            DataFileSpecs = new List<DataFileSpec>()
                 {
-                   "Track_Displacement",
-                   "Track_Displacement_Length",
-                   "Track_Duration",
-                   "Track_Length",
-                   "Track_Speed_Max",
-                   "Track_Speed_Mean",
-                   "Track_Speed_Min",
-                   "Track_Speed_StdDev",
-                   "Track_Speed_Variation",
-                   "Track_Straightness"
+                    new DataFileSpec
+                    { 
+                        FileSpec = "Track_Displacement", 
+                        Data = new List<string>{"Track Displacement X", "Track Displacement Y"}
+                    },
+                    new DataFileSpec
+                    { 
+                        FileSpec = "Track_Displacement_Length", 
+                        Data = new List<string>{"Track Displacement Length"}
+                    },
+                    new DataFileSpec
+                    { 
+                        FileSpec = "Track_Duration", 
+                        Data = new List<string>{"Track Duration"}
+                    },
+                    new DataFileSpec
+                    { 
+                        FileSpec = "Track_Length", 
+                        Data = new List<string>{"Track Length"}
+                    },
+                    new DataFileSpec
+                    { 
+                        FileSpec = "Track_Speed_Max", 
+                        Data = new List<string>{"Track Speed Max"}
+                    },
+                    new DataFileSpec
+                    { 
+                        FileSpec = "Track_Speed_Mean", 
+                        Data = new List<string>{"Track Speed Mean"}
+                    },
+                    new DataFileSpec
+                    { 
+                        FileSpec = "Track_Speed_Min", 
+                        Data = new List<string>{"Track Speed Min"}
+                    },
+                    new DataFileSpec
+                    { 
+                        FileSpec = "Track_Speed_StdDev", 
+                        Data = new List<string>{"Track Speed StdDev"}
+                    },
+                    new DataFileSpec
+                    { 
+                        FileSpec = "Track_Speed_Variation", 
+                        Data = new List<string>{"Track Speed Variation"}
+                    },
+                    new DataFileSpec
+                    { 
+                        FileSpec = "Track_Straightness", 
+                        Data = new List<string>{"Track Straightness"}
+                    },
                 };
-            }
         }
+
+        //public List<string> FileList
+        //{
+        //    get
+        //    {
+        //        return new List<string>()
+        //        {
+        //           "Track_Displacement",
+        //           "Track_Displacement_Length",
+        //           "Track_Duration",
+        //           "Track_Length",
+        //           "Track_Speed_Max",
+        //           "Track_Speed_Mean",
+        //           "Track_Speed_Min",
+        //           "Track_Speed_StdDev",
+        //           "Track_Speed_Variation",
+        //           "Track_Straightness"
+        //        };
+        //    }
+        //}
 
         public void Save()
         {

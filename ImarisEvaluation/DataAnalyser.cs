@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace ImarisAddIn.Analyser
 {
@@ -21,11 +22,11 @@ namespace ImarisAddIn.Analyser
                 ExperimentS Experiment = new ExperimentS(Directory.Name);
                 Experiments.Add(Directory.Name, Experiment);
 
-                foreach (string FileSpec in Settings.Instance.FileList)
+                foreach (DataFileSpec DataFileSpec in Settings.Instance.DataFileSpecs)
                 {
                     if (Directory.GetDirectories("*" + Settings.Instance.MigrationStatisticsFolderSpec + "*").Count() > 0)
                     {
-                        FileInfo[] StatisticFiles = Directory.GetDirectories("*" + Settings.Instance.MigrationStatisticsFolderSpec + "*")[0].GetFiles("*" + FileSpec + ".*");
+                        FileInfo[] StatisticFiles = Directory.GetDirectories("*" + Settings.Instance.MigrationStatisticsFolderSpec + "*")[0].GetFiles("*" + DataFileSpec.FileSpec + ".*");
 
                         if (StatisticFiles.Length > 0)
                         {
@@ -40,6 +41,12 @@ namespace ImarisAddIn.Analyser
                             while (!Reader.EndOfStream)
                             {
                                 string Line = Reader.ReadLine();
+
+                                string ConcPattern = @"(.*)(cain\s*\d*,)(.*)";
+
+                                if (Regex.IsMatch(Line, ConcPattern))
+                                    Line = Regex.Matches(Line, ConcPattern)[0].Groups[1].Value + Regex.Matches(Line, ConcPattern)[0].Groups[2].Value.Replace(',', '.') + Regex.Matches(Line, ConcPattern)[0].Groups[3].Value;
+
                                 List<string> Data = new List<string>(Line.Split(new char[] { ',' }));
 
                                 if (Data.Count > 1 && !HeaderFound)
@@ -54,68 +61,69 @@ namespace ImarisAddIn.Analyser
 
                                     Index = Data[IDIndex];
 
-                                    if (FileSpec.Equals("Track_Displacement"))
+                                    if (DataFileSpec.FileSpec.Equals("Track_Displacement"))
                                     {
                                         Experiment.GetTrack(Index).DisplacementX = Data[0];
                                         Experiment.GetTrack(Index).DisplacementY = Data[1];
 
                                         string[] ComponentData = Data[IDComponentName].Split(new char[] { ' ' });
-                                        Experiment.GetTrack(Index).ProjNumber = ComponentData[0];
-                                        Experiment.GetTrack(Index).Date = ComponentData[1];
-                                        Experiment.GetTrack(Index).Channel = ComponentData[2];
-                                        Experiment.GetTrack(Index).StartImage = ComponentData[3];
-                                        Experiment.GetTrack(Index).Lockstoff = ComponentData[4];
-                                        Experiment.GetTrack(Index).Gelafundinkonzentration = ComponentData[5];
-                                        Experiment.GetTrack(Index).Verduennung = ComponentData[6];
-                                        Experiment.GetTrack(Index).StartOrt = ComponentData[7];
-                                        Experiment.GetTrack(Index).Serum = ComponentData[8];
-                                        Experiment.GetTrack(Index).Versuchsnummer = ComponentData[9];
-                                        Experiment.GetTrack(Index).LA = ComponentData[10];
-                                        Experiment.GetTrack(Index).LAKonz = ComponentData[11];
-                                        Experiment.GetTrack(Index).Verwendbar = ComponentData[12];
+
+                                        if (ComponentData.Length >= 1) Experiment.GetTrack(Index).ProjNumber = ComponentData[0];
+                                        if (ComponentData.Length >= 2) Experiment.GetTrack(Index).Date = ComponentData[1];
+                                        if (ComponentData.Length >= 3) Experiment.GetTrack(Index).Channel = ComponentData[2];
+                                        if (ComponentData.Length >= 4) Experiment.GetTrack(Index).StartImage = ComponentData[3];
+                                        if (ComponentData.Length >= 5) Experiment.GetTrack(Index).Lockstoff = ComponentData[4];
+                                        if (ComponentData.Length >= 6) Experiment.GetTrack(Index).Gelafundinkonzentration = ComponentData[5];
+                                        if (ComponentData.Length >= 7) Experiment.GetTrack(Index).Verduennung = ComponentData[6];
+                                        if (ComponentData.Length >= 8) Experiment.GetTrack(Index).StartOrt = ComponentData[7];
+                                        if (ComponentData.Length >= 9) Experiment.GetTrack(Index).Serum = ComponentData[8];
+                                        if (ComponentData.Length >= 10) Experiment.GetTrack(Index).Versuchsnummer = ComponentData[9];
+                                        if (ComponentData.Length >= 10) Experiment.GetTrack(Index).LA = ComponentData[10];
+                                        if (ComponentData.Length >= 12) Experiment.GetTrack(Index).LAKonz = ComponentData[11];
+                                        if (ComponentData.Length >= 13) Experiment.GetTrack(Index).Verwendbar = ComponentData[12];
                                     }
 
-                                    else if (FileSpec.Equals("Track_Displacement_Length"))
+                                    else if (DataFileSpec.FileSpec.Equals("Track_Displacement_Length"))
                                     {
                                         Experiment.GetTrack(Index).DisplacementLength = Data[0];
                                     }
 
-                                    else if (FileSpec.Equals("Track_Duration"))
+                                    else if (DataFileSpec.FileSpec.Equals("Track_Duration"))
                                     {
                                         Experiment.GetTrack(Index).Duration = Data[0];
                                     }
 
-                                    else if (FileSpec.Equals("Track_Length"))
+                                    else if (DataFileSpec.FileSpec.Equals("Track_Length"))
                                     {
                                         Experiment.GetTrack(Index).Length = Data[0];
                                     }
 
-                                    else if (FileSpec.Equals("Track_Speed_Max"))
+                                    else if (DataFileSpec.FileSpec.Equals("Track_Speed_Max"))
                                     {
                                         Experiment.GetTrack(Index).SpeedMax = Data[0];
                                     }
 
-                                    else if (FileSpec.Equals("Track_Speed_Mean"))
+                                    else if (DataFileSpec.FileSpec.Equals("Track_Speed_Mean"))
                                     {
                                         Experiment.GetTrack(Index).SpeedMean = Data[0];
                                     }
 
-                                    else if (FileSpec.Equals("Track_Speed_Min"))
+                                    else if (DataFileSpec.FileSpec.Equals("Track_Speed_Min"))
                                     {
                                         Experiment.GetTrack(Index).SpeedMin = Data[0];
                                     }
 
-                                    else if (FileSpec.Equals("Track_Speed_StdDev"))
+                                    else if (DataFileSpec.FileSpec.Equals("Track_Speed_StdDev"))
                                     {
                                         Experiment.GetTrack(Index).SpeedStdDev = Data[0];
                                     }
 
-                                    else if (FileSpec.Equals("Track_Speed_Variation"))
+                                    else if (DataFileSpec.FileSpec.Equals("Track_Speed_Variation"))
                                     {
                                         Experiment.GetTrack(Index).SpeedVariation = Data[0];
                                     }
 
-                                    else if (FileSpec.Equals("Track_Straightness"))
+                                    else if (DataFileSpec.FileSpec.Equals("Track_Straightness"))
                                     {
                                         Experiment.GetTrack(Index).Straighness = Data[0];
                                     }
