@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<Settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ExperimentsFolderPrefix>V</ExperimentsFolderPrefix>
+  <MigrationStatisticsFolderSpec>Migration*Statistics</MigrationStatisticsFolderSpec>
+  <IDColumn>ID</IDColumn>
+  <ComponentNameColumn>Original Component Name</ComponentNameColumn>
+  <DataFileSpecs>
+    <DataFileSpec>
+      <FileSpec>Track_Displacement</FileSpec>
+      <Data>
+        <string>Track Displacement X</string>
+        <string>Track Displacement Y</string>
+      </Data>
+    </DataFileSpec>
+    <DataFileSpec>
+      <FileSpec>Track_Displacement_Length</FileSpec>
+      <Data>
+        <string>Track Displacement Length</string>
+      </Data>
+    </DataFileSpec>
+    <DataFileSpec>
+      <FileSpec>Track_Duration</FileSpec>
+      <Data>
+        <string>Track Duration</string>
+      </Data>
+    </DataFileSpec>
+    <DataFileSpec>
+      <FileSpec>Track_Length</FileSpec>
+      <Data>
+        <string>Track Length</string>
+      </Data>
+    </DataFileSpec>
+    <DataFileSpec>
+      <FileSpec>Track_Speed_Max</FileSpec>
+      <Data>
+        <string>Track Speed Max</string>
+      </Data>
+    </DataFileSpec>
+    <DataFileSpec>
+      <FileSpec>Track_Speed_Mean</FileSpec>
+      <Data>
+        <string>Track Speed Mean</string>
+      </Data>
+    </DataFileSpec>
+    <DataFileSpec>
+      <FileSpec>Track_Speed_Min</FileSpec>
+      <Data>
+        <string>Track Speed Min</string>
+      </Data>
+    </DataFileSpec>
+    <DataFileSpec>
+      <FileSpec>Track_Speed_StdDev</FileSpec>
+      <Data>
+        <string>Track Speed StdDev</string>
+      </Data>
+    </DataFileSpec>
+    <DataFileSpec>
+      <FileSpec>Track_Speed_Variation</FileSpec>
+      <Data>
+        <string>Track Speed Variation</string>
+      </Data>
+    </DataFileSpec>
+    <DataFileSpec>
+      <FileSpec>Track_Straightness</FileSpec>
+      <Data>
+        <string>Track Straightness</string>
+      </Data>
+    </DataFileSpec>
+  </DataFileSpecs>
+</Settings>

@@ -44,7 +44,8 @@ namespace ImarisAddIn.Analyser
         private void DefaultSettings()
         {
             ExperimentsFolderPrefix = "V";
-            MigrationStatisticsFolderSpec = "Migration_Statistics";
+            //MigrationStatisticsFolderSpec = "Migration_Statistics";
+            MigrationStatisticsFolderSpec = "Migration*Statistics";
             IDColumn = "ID";
             ComponentNameColumn = "Original Component Name";
 
